@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.option {
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 150px;
+    height: 180px; /* Adjust height to accommodate text */
+}
+
+.option img {
+    width: 100px; /* Adjust size of the image */
+    height: 100px; /* Adjust size of the image */
+    border-radius: 5px; /* Match button border radius */
+    margin-bottom: 10px;
+}
+
+.option p {
+    margin: 0;
+}
+
+.option:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}

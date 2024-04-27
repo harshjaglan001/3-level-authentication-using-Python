@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.register-container {
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="color"],
+input[type="submit"],
+button {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"],
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #45a049;
+}
+
+.color-picker-container,
+.image-capture-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#color-box {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+
+video,
+canvas {
+    width: 100%;
+    max-width: 160px;  /* Keeping video and canvas sizes consistent */
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}

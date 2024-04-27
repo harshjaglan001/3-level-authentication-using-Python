@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='otp.css') }}">
+</head>
+<body>
+    <div class="otp-container">
+        <h2>Enter OTP</h2>
+        <p>An OTP has been sent to your email.</p>
+        <form action="{{ url_for('verify_otp') }}" method="post">
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+        <button id="resend-btn" onclick="resendOTP()">Resend OTP</button>
+        <p id="timer"></p>
+    </div>
+
+    <script>
+        let timer;
+        let seconds = 180; // 3 minutes
+
+        function countdown() {
+            const minutes = Math.floor(seconds / 60);
+            let remainingSeconds = seconds % 60;
+
+            if (remainingSeconds < 10) {
+                remainingSeconds = "0" + remainingSeconds;
+            }
+
+            document.getElementById('timer').textContent = `Resend OTP in: ${minutes}:${remainingSeconds}`;
+
+            if (seconds === 0) {
+                clearInterval(timer);
+                document.getElementById('resend-btn').disabled = false;
+            } else {
+                seconds--;
+            }
+        }
+
+        function resendOTP() {
+            // Simulate sending OTP via email
+            console.log('Resending OTP...');
+
+            // Start timer
+            seconds = 180;
+            countdown();
+            timer = setInterval(countdown, 1000);
+
+            // Disable resend button
+            document.getElementById('resend-btn').disabled = true;
+        }
+
+        // Initial call to countdown
+        countdown();
+    </script>
+</body>
+</html>

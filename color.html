@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Your Color</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='color.css') }}">
+    <script>
+        function updateColor() {
+            var colorPicker = document.getElementById('colorPicker');
+            var colorInput = document.getElementById('color');
+            colorInput.value = colorPicker.value; // Sets the value of the color input to the selected color
+            document.getElementById('color-box').style.backgroundColor = colorPicker.value; // Updates the background color of the display box
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Pick Your Color</h1>
+        <form action="{{ url_for('verify_color') }}" method="post">
+            <input type="color" id="colorPicker" onchange="updateColor()">
+            <input type="text" id="color" name="color" placeholder="Color" readonly required>
+            <div id="color-box"></div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <script>
+        function updateColor() {
+            var colorPicker = document.getElementById('colorPicker');
+            var colorInput = document.getElementById('color-input');
+            colorInput.value = colorPicker.value;
+            document.getElementById('color-box').style.backgroundColor = colorPicker.value;
+        }
+
+        function captureImage() {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL('image/png');
+            document.getElementById('image_data').value = dataURL;
+        }
+
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    var video = document.getElementById('video');
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(function (err) {
+                    console.error('Error accessing the camera.', err);
+                });
+        }
+
+        window.onload = function() {
+            startCamera();
+            updateColor(); // Initialize color input and box on load
+        };
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="{{ url_for('register') }}" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="color-picker-container">
+                <label for="color">Favorite Color:</label>
+                <input type="text" id="color-input" name="color" readonly required>
+                <div id="color-box"></div>
+                <input type="color" id="colorPicker" onchange="updateColor()">
+            </div>
+            <div class="image-capture-container">
+                <video id="video" width="160" height="120" autoplay></video>
+                <button type="button" onclick="captureImage()">Capture Image</button>
+                <canvas id="canvas" width="160" height="120"></canvas>
+                <input type="hidden" name="image_data" id="image_data">
+            </div>
+            <input type="submit" value="Register">
+            <p class="login-link">Already Registered? <a href="{{ url_for('login') }}">Login here</a></p>
+        </form>
+    </div>
+</body>
+</html>
